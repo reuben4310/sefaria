@@ -19,7 +19,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
     // const userId = useSelector(state => state.userID)
     // const userType = useSelector(state => state.userType)
 
-    console.log(displayCode);
+    // console.log(displayCode);
     // 
     //     const handleChange = (event) => {
     //         setLevel(event);
@@ -37,8 +37,6 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
             })
             .then(data => {
                 setDisplayCode(data);
-                console.log("data", data);
-
             })
             .catch(err => console.error(err));
     }, []);

@@ -15,20 +15,14 @@ const useStyles = makeStyles((theme) => ({
 export default function DropDown({ onChange, display, inputProps, labelText }) {
     const classes = useStyles();
     const [level, setLevel] = useState();
-    const [displayCode, setDisplayCode] = useState([]);
-    // const userId = useSelector(state => state.userID)
-    // const userType = useSelector(state => state.userType)
-
-    // console.log(displayCode);
-    // 
-    //     const handleChange = (event) => {
-    //         setLevel(event);
-    //         console.log("g ggygy gg77ggyg", event.target.results.results);
-    // 
-    //     };
-
+    const [genesisCode, setGenesisCode] = useState([]);
+    const [exodusCode, setExodusCode] = useState([]);
+    const [leviticusCode, setLeviticusCode] = useState([]);
+    const [numbersCode, setNumbersCode] = useState([]);
+    const [deuteronomyCode, setDeuteronomyCode]= useState([]);
+  
     useEffect(() => {
-        fetch('http://localhost:8080/parshos')
+        fetch('https://www.sefaria.org/api/v2/index/Genesis')
             .then(function (response) {
                 if (response.status >= 400) {
                     throw new Error("Bad response from server");
@@ -36,11 +30,69 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                 return response.json();
             })
             .then(data => {
-                setDisplayCode(data);
+                setGenesisCode(data);
+                // console.log(data.alts.Parasha.nodes);
             })
             .catch(err => console.error(err));
     }, []);
 
+    useEffect(() => {
+        fetch('https://www.sefaria.org/api/v2/index/Exodus')
+            .then(function (response) {
+                if (response.status >= 400) {
+                    throw new Error("Bad response from server");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setExodusCode(data);
+                // console.log(data.alts.Parasha.nodes);
+            })
+            .catch(err => console.error(err));
+    }, []);
+
+    useEffect(() => {
+        fetch('https://www.sefaria.org/api/v2/index/Leviticus')
+            .then(function (response) {
+                if (response.status >= 400) {
+                    throw new Error("Bad response from server");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setLeviticusCode(data);
+            })
+            .catch(err => console.error(err));
+    }, []);
+
+    useEffect(() => {
+        fetch('https://www.sefaria.org/api/v2/index/Numbers')
+            .then(function (response) {
+                if (response.status >= 400) {
+                    throw new Error("Bad response from server");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setNumbersCode(data);
+            })
+            .catch(err => console.error(err));
+    }, []);
+
+    useEffect(() => {
+        fetch('https://www.sefaria.org/api/v2/index/Deuteronomy')
+            .then(function (response) {
+                if (response.status >= 400) {
+                    throw new Error("Bad response from server");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setDeuteronomyCode(data);
+            })
+            .catch(err => console.error(err));
+    }, []);
+    
     return (
         <React.Fragment>
             <FormControl className={classes.formControl}>
@@ -52,8 +104,13 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                     }
                     inputProps={inputProps}
                 >
-                    <option aria-label="None" value="" />
-                    {displayCode.map(option => <option key={option.id} value={option.parsha}>{option.parsha}</option>)}
+                    <option style={{ fontWeight: 'bold' }} label="Parsha list" value="Parsha list" />
+                    <hr />
+                    {genesisCode && genesisCode.alts ? (genesisCode.alts.Parasha.nodes.map(option => <option value={option.heTitle}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>)) : ''}
+                    {exodusCode && exodusCode.alts ? (exodusCode.alts.Parasha.nodes.map(option => <option value={option.heTitle}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>)) : ''}
+                    {leviticusCode && leviticusCode.alts ? (leviticusCode.alts.Parasha.nodes.map(option => <option value={option.heTitle}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>)) : ''}
+                    {numbersCode && numbersCode.alts ? (numbersCode.alts.Parasha.nodes.map(option => <option value={option.heTitle}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>)) : ''}
+                    {deuteronomyCode && deuteronomyCode.alts ? (deuteronomyCode.alts.Parasha.nodes.map(option => <option value={option.heTitle}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>)) : ''}
                 </Select>
             </FormControl>
         </React.Fragment>

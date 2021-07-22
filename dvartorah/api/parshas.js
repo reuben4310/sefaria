@@ -20,6 +20,20 @@ router.get("/parshos", (req, res, next) => {
         });
 });
 
+router.get("/vorts", (req, res, next) => {
+    pool.query("SELECT * FROM dvar_torahs",
+        (error, results, fields) => {
+            if (error) {
+                return res.sendStatus(500),
+                console.log(error);
+            }
+            return res.status(200).json(
+                results
+                // ,console.log("bodddy", results),
+                
+            );
+        });
+});
 module.exports = router;
 app.listen(8080);
 app.use('/', router);

@@ -2,10 +2,18 @@ const debug = require('debug')('api:pool');
 const mysql = require('mysql');
 const pool = mysql.createPool({
     connectionLimit: 1200,
-    host: 'localhost',
-    user: 'rnSefar',
-    password: '1234',
-    database: 'sefaria',
+    // develpmont DB- Not so reliable though
+    host: 'remotemysql.com',
+    user: 'dmARuxnTUY',
+    password: 'XtNrPqFFL5',
+    database: 'dmARuxnTUY',
+
+    // private DB for backup
+
+    // host: 'localhost',
+    // user: 'rnSefar',
+    // password: '1234',
+    // database: 'sefaria',
     charset: 'utf8mb4'
 });
 

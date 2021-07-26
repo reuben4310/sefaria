@@ -1,6 +1,8 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import DropDown from './DropDown'
+import Home from './Home';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 function App() {
   const [level, setLevel] = useState("");
@@ -8,35 +10,43 @@ function App() {
   const [selected, setSelected] = useState([]);
   const [parsha, setParsha] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:8080/vorts')
-      .then(function (response) {
-        if (response.status >= 400) {
-          throw new Error("Bad response from server");
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        setSelected((data));
-        console.log("dat", data);
-      });
+  useEffect(async () => {
+    await
+      fetch('http://localhost:8080/vorts')
+        .then(function (response) {
+          if (response.status >= 400) {
+            throw new Error("Bad response from server");
+          }
+          return response.json();
+        })
+        .then(function (data) {
+          setSelected((data));
+          console.log("data", data);
+        });
   }, []);
-  const vorts = () => {
-    selected.map(option => <h1>{option.vort}</h1>)
-  }
 
   return (
     <div className="App">
-      {vorts}
-      <h1 style={{ color: 'red' }}>Welcome to our Dvar-Torah generator</h1>
-      <h4>Please pick a parsha</h4>
-      <DropDown
-        onChange={
-          (e) => {
-            setParsha(e.target.value);
-          }
-        }
-      />
+      <Router>
+        <Switch>
+          <Route path="/drop">
+            <React.Fragment>
+              <DropDown
+                onChange={
+                  (e) => {
+                    console.log(e.target.value)
+                    setParsha(e.target.value);
+                  }}
+              />
+            </React.Fragment>
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+
+      {/* still fake */}
       {/* Berishis */}
       {parsha === "0" && (selected.map(option => option.parshaId === +parsha && (<h1 style={{ color: "red" }}>{option.vort}</h1>)))}
       {/* Noach */}
@@ -44,6 +54,7 @@ function App() {
       {/* Lech Lecha */}
       {parsha === "2" && (selected.map(option => option.parshaId === +parsha && (<h1 style={{ color: "blue" }}>{option.vort}</h1>)))}
     </div>
+    // </div>
   );
 }
 

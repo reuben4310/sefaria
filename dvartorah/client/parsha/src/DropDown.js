@@ -22,6 +22,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
     const [deuteronomyCode, setDeuteronomyCode] = useState([]);
 
     useEffect(() => {
+        // Breishish
         fetch('https://www.sefaria.org/api/v2/index/Genesis')
             .then(function (response) {
                 if (response.status >= 400) {
@@ -31,12 +32,10 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
             })
             .then(data => {
                 setGenesisCode(data);
-                console.log("gen",data);
+                console.log("gen", data);
             })
             .catch(err => console.error(err));
-    }, []);
-
-    useEffect(() => {
+        // Shmos
         fetch('https://www.sefaria.org/api/v2/index/Exodus')
             .then(function (response) {
                 if (response.status >= 400) {
@@ -48,9 +47,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                 setExodusCode(data);
             })
             .catch(err => console.error(err));
-    }, []);
-
-    useEffect(() => {
+        // Vayikra
         fetch('https://www.sefaria.org/api/v2/index/Leviticus')
             .then(function (response) {
                 if (response.status >= 400) {
@@ -62,9 +59,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                 setLeviticusCode(data);
             })
             .catch(err => console.error(err));
-    }, []);
-
-    useEffect(() => {
+        // Bamidbar
         fetch('https://www.sefaria.org/api/v2/index/Numbers')
             .then(function (response) {
                 if (response.status >= 400) {
@@ -76,9 +71,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                 setNumbersCode(data);
             })
             .catch(err => console.error(err));
-    }, []);
-
-    useEffect(() => {
+        // Devarim
         fetch('https://www.sefaria.org/api/v2/index/Deuteronomy')
             .then(function (response) {
                 if (response.status >= 400) {
@@ -95,7 +88,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
     return (
         <React.Fragment>
             <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="Interview-Questions">{labelText}</InputLabel>
+                <h4>Please pick a parsha</h4>
                 <Select
                     native
                     onChange={
@@ -103,7 +96,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                     }
                     inputProps={inputProps}
                 >
-                    <option style={{fontWeight:"bold"}} label="Parsha list" value="Parsha list" key=""/>
+                    <option style={{ fontWeight: "bold" }} label="Parsha list" value="Parsha list" key="" />
                     <hr />
                     {/* Breishes */}
                     {genesisCode && genesisCode.alts ? (genesisCode.alts.Parasha.nodes.map((option, index) => {

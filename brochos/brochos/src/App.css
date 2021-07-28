@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+.asher {
+  text-decoration: none;
+  color: black
+}
+
+.asher:hover {
+  text-decoration: underline !important;
+  color: red!important;
+}
+
+img {
+  height: 20%!important;
+  width: 98%!important;
+}
+
+.cake {
+  height: 95%!important;
+  width: 95%!important;
+}
+
+.derech {
+  height: 95%!important;
+  width: 90%!important;
+}

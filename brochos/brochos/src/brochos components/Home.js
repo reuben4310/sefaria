@@ -98,10 +98,10 @@ function Home() {
     }, []);
 
     return (
-        <main>
+        <main className="mobile">
             <Grid
                 item
-                xs={10}
+                xs={9}
                 container
                 direction="row"
                 alignItems="right"
@@ -110,7 +110,7 @@ function Home() {
                 <Box textAlign="center" component="h1"><Paper className={classes.paper}><Link to="/thd" className="asher">{derechTitle.heTitleVariants}</Link></Paper></Box>&nbsp;&nbsp;
                 <Box textAlign="center" component="h1"><Paper className={classes.paper}><Link to="/ahm" className="asher">{michyahTitle.heTitleVariants}</Link></Paper></Box>&nbsp;&nbsp;
                 <Box textAlign="center" component="h1"><Paper className={classes.paper}><Link
-                    to="/bh" className="asher">{birchasTitle.heTitleVariants}</Link></Paper></Box>
+                    to="/bh" className="asher">{birchasTitle.heTitleVariants}</Link></Paper></Box>&nbsp;&nbsp;
                 <Box textAlign="center" component="h1"><Paper className={classes.paper}><Link to="/asher" className="asher"> {asherTitle.heTitleVariants}</Link></Paper></Box>&nbsp;&nbsp;
             </Grid>
         </main >

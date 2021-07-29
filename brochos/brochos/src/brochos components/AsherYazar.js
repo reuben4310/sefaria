@@ -37,9 +37,9 @@ export default function AsherYazar() {
         <React.Fragment>
             <FormControl className={classes.formControl}>
                 <Box textAlign="center"><Paper className={classes.paper}>
-                    {asherCode.he && (<h3 style={{ direction: "rtl" }}>{asherCode.he[0].replace(/<[^>]+>/g, '')}</h3>)}
+                    {asherCode.he && (<h2 style= {{direction: "rtl" }}>{asherCode.he[0].replace(/<[^>]+>/g, '')}</h2>)}
                 </Paper></Box>
             </FormControl>
-        </React.Fragment>
+        </React.Fragment >
     );
 }

@@ -2,6 +2,9 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import DropDown from './DropDown'
 import Home from './Home';
+import Beginner from "./Beginner"
+import Medium from "./Medium"
+import Advanced from "./Advanced"
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 function App() {
@@ -10,20 +13,20 @@ function App() {
   const [selected, setSelected] = useState([]);
   const [parsha, setParsha] = useState([]);
 
-  useEffect(async () => {
-    await
-      fetch('http://localhost:8080/vorts')
-        .then(function (response) {
-          if (response.status >= 400) {
-            throw new Error("Bad response from server");
-          }
-          return response.json();
-        })
-        .then(function (data) {
-          setSelected((data));
-          console.log("data", data);
-        });
-  }, []);
+  // useEffect(async () => {
+  //   await
+  //     fetch('http://localhost:8080/vorts')
+  //       .then(function (response) {
+  //         if (response.status >= 400) {
+  //           throw new Error("Bad response from server");
+  //         }
+  //         return response.json();
+  //       })
+  //       .then(function (data) {
+  //         setSelected((data));
+  //         console.log("data", data);
+  //       });
+  // }, []);
 
   return (
     <div className="App">
@@ -31,6 +34,7 @@ function App() {
         <Switch>
           <Route path="/drop">
             <React.Fragment>
+            <div className="fadeIn">
               <DropDown
                 onChange={
                   (e) => {
@@ -38,10 +42,34 @@ function App() {
                     setParsha(e.target.value);
                   }}
               />
+              </div>
+            </React.Fragment>
+          </Route>
+          <Route path="/beginner">
+            <React.Fragment>
+            <div className="fadeIn">
+            <Beginner />
+              </div>
+            </React.Fragment>
+          </Route>
+          <Route path="/medium">
+            <React.Fragment>
+            <div className="fadeIn">
+            <Medium />
+              </div>
+            </React.Fragment>
+          </Route>
+          <Route path="/advanced">
+            <React.Fragment>
+            <div className="fadeIn">
+            <Advanced />
+              </div>
             </React.Fragment>
           </Route>
           <Route path="/">
+          <div className="fadeIn">
             <Home />
+            </div>
           </Route>
         </Switch>
       </Router>

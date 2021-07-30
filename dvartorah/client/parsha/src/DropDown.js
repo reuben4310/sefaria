@@ -22,7 +22,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
     const [deuteronomyCode, setDeuteronomyCode] = useState([]);
 
     useEffect(() => {
-        // Breishish
+        // Breishis
         fetch('https://www.sefaria.org/api/v2/index/Genesis')
             .then(function (response) {
                 if (response.status >= 400) {

@@ -30,7 +30,7 @@ img {
 @media only screen and (max-width: 769px) {
   img {
     height: 10%!important;
-    width: 18%!important;
+    width: 95%!important;
   }
   .cake {
     height: 25%!important;

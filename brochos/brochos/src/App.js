@@ -1,4 +1,4 @@
-import { Box, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { AppBar, Box, Grid, makeStyles, Paper, Toolbar, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect, useHistory } from "react-router-dom";
 
@@ -9,6 +9,7 @@ import AsherYazar from "./brochos components/AsherYazar";
 import BirchasHamazon from './brochos components/BirchasHamazon';
 import Home from './brochos components/Home';
 import TefillasHaderech from './brochos components/TefillasHaderech';
+import BlessDeck from './media/BlessDeck.png';
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -46,10 +47,16 @@ const useStyles = makeStyles((theme) => ({
 
 
 function App() {
- 
+
   return (
     <div className="App">
+
       <Router>
+        <AppBar>
+
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="/"> <img src={BlessDeck} alt=""></img></Link>
+
+        </AppBar>
         <div>
           <Switch>
             <Route path="/asher">
@@ -62,7 +69,7 @@ function App() {
               <AlHamichyah />
             </Route>
             <Route path="/thd">
-              <TefillasHaderech/>
+              <TefillasHaderech />
             </Route>
             <Route path="/">
               <Home />

@@ -60,6 +60,7 @@ export default function BirchasHamazon() {
 
     return (
         <React.Fragment>
+            <br/>
             <FormControl className={classes.formControl}>
                 <Grid
                     container
@@ -219,7 +220,7 @@ export default function BirchasHamazon() {
                     </Grid>
                     <Grid item
                         xs={5}>
-                        <img src={Bread} alt=""></img>
+                        <img className="bread" src={Bread} alt=""></img>
                     </Grid>
                 </Grid>
             </FormControl>

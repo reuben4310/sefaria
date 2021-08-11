@@ -50,6 +50,7 @@ function Homepage() {
                             history.push("/beginner")}}
                         >Beginner</Button>
                       <Button
+                      style={{backgroundColor:"yellow"}}
                         variant="contained"
                         color="inherit"
                         onClick={(e) => {

@@ -127,7 +127,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                     {deuteronomyCode && deuteronomyCode.alts ? (deuteronomyCode.alts.Parasha.nodes.map((option, index) => {
                         return <option
                             key={index}
-                            value={index + 42}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
+                            value={index + 43}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
                     })) : ''}
                 </Select>
             </FormControl>

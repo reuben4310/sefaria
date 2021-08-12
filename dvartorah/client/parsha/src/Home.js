@@ -12,9 +12,12 @@ function Homepage() {
             })
             .then(data => {
                 setCurrentParsha(data.calendar_items[0].displayValue.he);
-            })
+            });
+
     }, []);
 
+    
+      
     const theme = createTheme({
         palette: {
             primary: {
@@ -24,8 +27,8 @@ function Homepage() {
             secondary: {
                 main: '#ff5252',
             },
-            inherit:{
-              main: '#FFD523'
+            inherit: {
+                main: '#FFD523'
             }
         }
     });
@@ -35,37 +38,48 @@ function Homepage() {
             <MuiThemeProvider theme={theme}>
                 <h1>Weekly Dvar Torah</h1>
                 {currentParsha && < h2 > This Week 's Parsha is {currentParsha}</h2>}
-                  <h4>Choose the Difficulty</h4>
+                <h4>Choose the Difficulty</h4>
 
                 <div> {
-        /*this is where that week's divrei torah will go; */} </div>
+        /*this is where that week's divrei torah will go; */}
+
+         
+                   
+
+
+
+                </div>
                 <form>
 
                     <div className="button">
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            history.push("/beginner")}}
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                history.push("/beginner")
+
+                            }}
                         >Beginner</Button>
-                      <Button
-                      style={{backgroundColor:"yellow"}}
-                        variant="contained"
-                        color="inherit"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            history.push("/medium")}}
-                      >Medium</Button>
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            history.push("/advanced")}}
-                      >Advanced</Button>
-                      </div>
-                      <div>
+                        <Button
+                            style={{ backgroundColor: "yellow" }}
+                            variant="contained"
+                            color="inherit"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                history.push("/medium")
+                            }}
+                        >Medium</Button>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                history.push("/advanced")
+                            }}
+                        >Advanced</Button>
+                    </div>
+                    <div>
                         <Button
                             variant="contained"
                             color="secondary"
@@ -76,6 +90,7 @@ function Homepage() {
                 </form>
             </MuiThemeProvider>
         </div>
-      );}
+    );
+}
 
 export default Homepage;

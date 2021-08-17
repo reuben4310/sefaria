@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 function Homepage() {
-    const [currentParsha, setCurrentParsha] = useState(null);
+    const [currentParsha, setCurrentParsha] = useState([]);
     const history = useHistory();
     useEffect(() => {
         fetch("https://www.sefaria.org/api/calendars/")
@@ -12,12 +12,10 @@ function Homepage() {
             })
             .then(data => {
                 setCurrentParsha(data.calendar_items[0].displayValue.he);
+                console.log(data);
             });
-
     }, []);
 
-    
-      
     const theme = createTheme({
         palette: {
             primary: {
@@ -37,17 +35,12 @@ function Homepage() {
         <div className="App">
             <MuiThemeProvider theme={theme}>
                 <h1>Weekly Dvar Torah</h1>
-                {currentParsha && < h2 > This Week 's Parsha is {currentParsha}</h2>}
-                <h4>Choose the Difficulty</h4>
 
+                {currentParsha && < h2 > This Week 's Parsha is {currentParsha}</h2>}
+
+                <h4>Choose the Difficulty</h4>
                 <div> {
         /*this is where that week's divrei torah will go; */}
-
-         
-                   
-
-
-
                 </div>
                 <form>
 
@@ -58,7 +51,6 @@ function Homepage() {
                             onClick={(e) => {
                                 e.preventDefault();
                                 history.push("/beginner")
-
                             }}
                         >Beginner</Button>
                         <Button

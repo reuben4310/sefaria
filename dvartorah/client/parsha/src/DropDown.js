@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles, InputLabel, FormControl, Select } from '@material-ui/core';
+import { makeStyles, FormControl, Select } from '@material-ui/core';
 // import { useSelector } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -19,8 +19,8 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
     const [numbersCode, setNumbersCode] = useState([]);
     const [deuteronomyCode, setDeuteronomyCode] = useState([]);
 
-
-    useEffect(() => {
+    useEffect(async () => {
+        await
         // Breishis
         fetch('https://www.sefaria.org/api/v2/index/Genesis')
             .then(function (response) {
@@ -31,7 +31,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
             })
             .then(data => {
                 setGenesisCode(data);
-                console.log("gen", data);
+                console.log("gen", data.alts.Parasha.nodes.map(node => node.heTitle));
             })
             .catch(err => console.error(err));
         // Shmos
@@ -44,6 +44,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
             })
             .then(data => {
                 setExodusCode(data);
+                console.log("ex", data.alts.Parasha.nodes.map(node => node.heTitle));
             })
             .catch(err => console.error(err));
         // Vayikra
@@ -56,6 +57,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
             })
             .then(data => {
                 setLeviticusCode(data);
+                console.log("lev", data.alts.Parasha.nodes.map(node => node.heTitle));
             })
             .catch(err => console.error(err));
         // Bamidbar
@@ -68,6 +70,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
             })
             .then(data => {
                 setNumbersCode(data);
+                console.log("num", data.alts.Parasha.nodes.map(node => node.heTitle));
             })
             .catch(err => console.error(err));
         // Devarim
@@ -80,6 +83,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
             })
             .then(data => {
                 setDeuteronomyCode(data);
+                console.log("Deu", data.alts.Parasha.nodes.map(node => node.heTitle));
             })
             .catch(err => console.error(err));
     }, []);
@@ -88,48 +92,50 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
         <React.Fragment>
             <FormControl className={classes.formControl}>
                 <h4>Please pick a parsha</h4>
-                <Select
-                    native
-                    onChange={
-                        onChange
-                    }
-                    inputProps={inputProps}
-                >
-                    <option style={{ fontWeight: "bold" }} label="Parsha list" value="Parsha list" key="" />
-                    <hr />
-                    {/* Breishis */}
-                    {genesisCode && genesisCode.alts ? (genesisCode.alts.Parasha.nodes.map(
-                        (option, index) => {
+                <form>
+                    <Select
+                        native
+                        onChange={
+                            onChange
+                        }
+                        inputProps={inputProps}
+                    >
+                        <option style={{ fontWeight: "bold" }} label="Parsha list" value="Parsha list" key="" />
+                        <hr />
+                        {/* Breishis */}
+                        {genesisCode && genesisCode.alts ? (genesisCode.alts.Parasha.nodes.map(
+                            (option, index) => {
+                                return <option
+                                    key={index}
+                                    value={index}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}
+                                </option>
+                            })) : ''}
+                        {/* Shmos */}
+                        {exodusCode && exodusCode.alts ? (exodusCode.alts.Parasha.nodes.map((option, index) => {
                             return <option
                                 key={index}
-                                value={index}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}
-                            </option>
+                                value={index + 12}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
                         })) : ''}
-                    {/* Shmos */}
-                    {exodusCode && exodusCode.alts ? (exodusCode.alts.Parasha.nodes.map((option, index) => {
-                        return <option
-                            key={index}
-                            value={index + 12}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
-                    })) : ''}
-                    {/* Vayikra */}
-                    {leviticusCode && leviticusCode.alts ? (leviticusCode.alts.Parasha.nodes.map((option, index) => {
-                        return <option
-                            key={index}
-                            value={index + 23}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
-                    })) : ''}
-                    {/* Bamidbar */}
-                    {numbersCode && numbersCode.alts ? (numbersCode.alts.Parasha.nodes.map((option, index) => {
-                        return <option
-                            key={index}
-                            value={index + 33}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
-                    })) : ''}
-                    {/* Devarim */}
-                    {deuteronomyCode && deuteronomyCode.alts ? (deuteronomyCode.alts.Parasha.nodes.map((option, index) => {
-                        return <option
-                            key={index}
-                            value={index + 43}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
-                    })) : ''}
-                </Select>
+                        {/* Vayikra */}
+                        {leviticusCode && leviticusCode.alts ? (leviticusCode.alts.Parasha.nodes.map((option, index) => {
+                            return <option
+                                key={index}
+                                value={index + 23}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
+                        })) : ''}
+                        {/* Bamidbar */}
+                        {numbersCode && numbersCode.alts ? (numbersCode.alts.Parasha.nodes.map((option, index) => {
+                            return <option
+                                key={index}
+                                value={index + 33}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
+                        })) : ''}
+                        {/* Devarim */}
+                        {deuteronomyCode && deuteronomyCode.alts ? (deuteronomyCode.alts.Parasha.nodes.map((option, index) => {
+                            return <option
+                                key={index}
+                                value={index + 43}>&nbsp;&nbsp;{option.heTitle}&nbsp;&nbsp;&nbsp;{option.title}</option>
+                        })) : ''}
+                    </Select>
+                </form>
             </FormControl>
         </React.Fragment>
     );

@@ -36,12 +36,9 @@ function Homepage() {
             <MuiThemeProvider theme={theme}>
                 <h1>Weekly Dvar Torah</h1>
 
-                {currentParsha && < h2 > This Week 's Parsha is {currentParsha}</h2>}
+                {currentParsha &&  <h2>This Week's Parsha is {currentParsha}</h2>}
 
                 <h4>Choose the Difficulty</h4>
-                <div> {
-        /*this is where that week's divrei torah will go; */}
-                </div>
                 <form>
 
                     <div className="button">

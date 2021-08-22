@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, FormControl, Select } from '@material-ui/core';
+import { Button, createTheme, MuiThemeProvider } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 // import { useSelector } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -18,6 +20,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
     const [leviticusCode, setLeviticusCode] = useState([]);
     const [numbersCode, setNumbersCode] = useState([]);
     const [deuteronomyCode, setDeuteronomyCode] = useState([]);
+    const history = useHistory();
 
     useEffect(async () => {
         await
@@ -136,6 +139,7 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                         })) : ''}
                     </Select>
                 </form>
+              
             </FormControl>
         </React.Fragment>
     );

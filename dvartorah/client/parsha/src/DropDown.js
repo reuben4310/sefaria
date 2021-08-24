@@ -138,16 +138,6 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                         })) : ''}
                     </Select>
                 </form>
-                {/* <br /> */}
-                {/* <footer style={{ display: "grid", alignItems:"bottom" }}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            history.push('/');
-                        }}
-                    >Back to Home</Button></footer> */}
             </FormControl>
         </React.Fragment >
     );

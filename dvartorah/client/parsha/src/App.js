@@ -182,7 +182,7 @@ function App() {
                 {/* V'Toz Habracha */}
                 {parsha === "53" && (selected.map(option => option.parshaId === +parsha && (<h1 style={{ color: "#2E2D88" }}>{option.vort.split("/").map(p => <p> {p}</p>)}</h1>)))}
                 <br />
-                <a href="/"><button style={{ marginBottom: "2%" }}>Home</button></a>
+                <a href="/"><button style={{ marginBottom: "2%" }}>Back to home</button></a>
               </div>
             </React.Fragment>
           </Route>
@@ -248,6 +248,7 @@ function App() {
                 {currentParsha === "וילך" ? (<h1 style={{ color: "cyan" }}>{selected[55].vort.split("/").map(p => <p> {p}</p>)}</h1>) : ''}
                 {currentParsha === "האזינו" ? (<h1 style={{ color: "blue" }}>{selected[56].vort.split("/").map(p => <p> {p}</p>)}</h1>) : ''}
                 {currentParsha === "וזאת הברכה" ? (<h1 style={{ color: "tomato" }}>{selected[57].vort.split("/").map(p => <p> {p}</p>)}</h1>) : ''}
+                <a href="/"><button style={{ marginBottom: "2%" }}>Back to home</button></a>
               </div>
             </React.Fragment>
           </Route>
@@ -313,6 +314,7 @@ function App() {
                 {currentParsha === "וילך" ? (<h1 style={{ color: "cyan" }}>{medium[51].vort.split("/").map(p => <p> {p}</p>)}</h1>) : ''}
                 {currentParsha === "האזינו" ? (<h1 style={{ color: "blue" }}>{medium[52].vort.split("/").map(p => <p> {p}</p>)}</h1>) : ''}
                 {currentParsha === "וזאת הברכה" ? (<h1 style={{ color: "tomato" }}>{medium[53].vort.split("/").map(p => <p> {p}</p>)}</h1>) : ''}
+                <a href="/"><button style={{ marginBottom: "2%" }}>Back to home</button></a>
               </div>
             </React.Fragment>
           </Route>

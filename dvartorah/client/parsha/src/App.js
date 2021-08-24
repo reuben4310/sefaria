@@ -37,19 +37,19 @@ function App() {
       });
   }, []);
 
-  useEffect(async () => {
-    await
-      fetch('http://localhost:1818/mediumVorts')
-        .then(function (response) {
-          if (response.status >= 400) {
-            throw new Error("Bad response from server");
-          }
-          return response.json();
-        })
-        .then(function (mediumData) {
-          setMedium((mediumData));
-          console.log(mediumData);
-        });
+  useEffect(() => {
+
+    fetch('http://localhost:1818/mediumVorts')
+      .then(function (response) {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
+      })
+      .then(function (mediumData) {
+        setMedium((mediumData));
+        console.log(mediumData);
+      });
   }, [medium]);
 
   return (

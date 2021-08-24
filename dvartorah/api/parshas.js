@@ -25,12 +25,23 @@ router.get("/vorts", (req, res, next) => {
         (error, results, fields) => {
             if (error) {
                 return res.sendStatus(500),
-                console.log(error);
+                    console.log(error);
             }
             return res.status(200).json(
                 results
-                // ,console.log("bodddy", results),
-                
+            );
+        });
+});
+
+router.get("/mediumVorts", (req, res, next) => {
+    pool.query("SELECT * FROM medium_vorts",
+        (error, results, fields) => {
+            if (error) {
+                return res.sendStatus(500),
+                    console.log(error);
+            }
+            return res.status(200).json(
+                results
             );
         });
 });

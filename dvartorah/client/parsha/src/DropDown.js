@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles, FormControl, Select } from '@material-ui/core';
+import { makeStyles, FormControl, Select, Button } from '@material-ui/core';
+import { useHistory } from 'react-router';
 // import { useSelector } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -18,22 +19,23 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
     const [leviticusCode, setLeviticusCode] = useState([]);
     const [numbersCode, setNumbersCode] = useState([]);
     const [deuteronomyCode, setDeuteronomyCode] = useState([]);
+    const history = useHistory();
 
     useEffect(async () => {
         await
-        // Breishis
-        fetch('https://www.sefaria.org/api/v2/index/Genesis')
-            .then(function (response) {
-                if (response.status >= 400) {
-                    throw new Error("Bad response from server");
-                }
-                return response.json();
-            })
-            .then(data => {
-                setGenesisCode(data);
-                console.log("gen", data.alts.Parasha.nodes.map(node => node.heTitle));
-            })
-            .catch(err => console.error(err));
+            // Breishis
+            fetch('https://www.sefaria.org/api/v2/index/Genesis')
+                .then(function (response) {
+                    if (response.status >= 400) {
+                        throw new Error("Bad response from server");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    setGenesisCode(data);
+                    console.log("gen", data.alts.Parasha.nodes.map(node => node.heTitle));
+                })
+                .catch(err => console.error(err));
         // Shmos
         fetch('https://www.sefaria.org/api/v2/index/Exodus')
             .then(function (response) {
@@ -136,7 +138,17 @@ export default function DropDown({ onChange, display, inputProps, labelText }) {
                         })) : ''}
                     </Select>
                 </form>
+                {/* <br /> */}
+                {/* <footer style={{ display: "grid", alignItems:"bottom" }}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            history.push('/');
+                        }}
+                    >Back to Home</Button></footer> */}
             </FormControl>
-        </React.Fragment>
+        </React.Fragment >
     );
 }

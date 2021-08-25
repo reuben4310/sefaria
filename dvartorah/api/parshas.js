@@ -38,7 +38,7 @@ router.get("/mediumVorts", (req, res, next) => {
         (error, results, fields) => {
             if (error) {
                 return res.sendStatus(500),
-                    console.log(error);
+                    console.log("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", error);
             }
             return res.status(200).json(
                 results

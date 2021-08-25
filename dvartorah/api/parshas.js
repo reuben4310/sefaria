@@ -4,6 +4,7 @@ const app = express();
 app.use(cors());
 const router = express.Router()
 const pool = require('./pool');
+const poolMedium = require('./poolMedium');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -34,7 +35,7 @@ router.get("/vorts", (req, res, next) => {
 });
 
 router.get("/mediumVorts", (req, res, next) => {
-    pool.query("SELECT * FROM medium_vorts",
+    poolMedium.query("SELECT * FROM medium_vorts",
         (error, results, fields) => {
             if (error) {
                 return res.sendStatus(500),

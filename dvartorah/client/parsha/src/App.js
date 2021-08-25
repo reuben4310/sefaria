@@ -38,7 +38,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-
     fetch('http://localhost:1818/mediumVorts')
       .then(function (response) {
         if (response.status >= 400) {
